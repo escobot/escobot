@@ -4,12 +4,14 @@
   "description": "time microservice",
   "main": "server/service.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/run.js"
   },
   "author": "pbgnz",
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
+    "moment": "^2.18.1",
     "superagent": "^3.5.2"
   },
   "bin": {
