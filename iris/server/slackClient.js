@@ -14,7 +14,7 @@ function handleOnAuthenticated(rtmStartData) {
 
 function handleOnMessage(message) {
 
-    if(message.text.toLowerCase().includes('iris')){
+    if(message.text.toLowerCase().includes('iris')) {
         nlp.ask(message.text, (err, res) => {
             if(err) {
                 console.log(err);
