@@ -7,7 +7,7 @@ const witToken = config.witToken;
 
 // clients
 const slackClient = require('../server/slackClient');
-const witClients = require('../server/witClient')(witToken);
+const witClient = require('../server/witClient')(witToken);
 
 // logs
 const slackLogLevel = 'verbose';
@@ -17,8 +17,10 @@ const service = require('../server/service');
 const http = require('http');
 const server = http.createServer(service);
 
+const serviceRegistry = service.get('serviceRegistry');
+
 // real time messages
-const rtm = slackClient.init(slackToken, slackLogLevel, witClients);
+const rtm = slackClient.init(slackToken, slackLogLevel, witClient, serviceRegistry);
 rtm.start();
 
 slackClient.addAuthenticatedHandler(rtm, () => server.listen(3000));
