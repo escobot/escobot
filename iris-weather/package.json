@@ -1,7 +1,7 @@
 {
-  "name": "iris-time",
+  "name": "iris-weather",
   "version": "1.0.0",
-  "description": "time microservice",
+  "description": "",
   "main": "server/service.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,10 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.3",
-    "moment": "^2.18.1",
     "superagent": "^3.5.2"
-  },
-  "bin": {
-    "iris-time": "run.js"
   }
 }
