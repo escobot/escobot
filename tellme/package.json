@@ -1,5 +1,5 @@
 {
-  "name": "iris",
+  "name": "tellme",
   "version": "1.0.0",
   "description": "slack bot microservice",
   "main": "server/service.js",
