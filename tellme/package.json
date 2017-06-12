@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pbgnz/iris.git"
+    "url": "git+https://github.com/pbgnz/tellme.git"
   },
   "author": "pbgnz",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pbgnz/iris/issues"
+    "url": "https://github.com/pbgnz/tellme/issues"
   },
-  "homepage": "https://github.com/pbgnz/iris#readme",
+  "homepage": "https://github.com/pbgnz/tellme#readme",
   "dependencies": {
     "@slack/client": "^3.10.0",
     "express": "^4.15.3",
