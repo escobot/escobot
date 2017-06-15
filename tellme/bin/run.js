@@ -13,7 +13,7 @@ const witClient = require('../server/witClient')(witToken);
 const slackLogLevel = 'verbose';
 
 // server
-const service = require('../server/service');
+const service = require('../server/service')(config);
 const http = require('http');
 const server = http.createServer(service);
 
