@@ -7,7 +7,8 @@ const witToken = config.witToken;
 
 // clients
 const slackClient = require('../server/slackClient');
-const witClient = require('../server/witClient')(witToken);
+const WitClient = require('../server/witClient');
+const witClient = new WitClient(witToken);
 
 // logs
 const slackLogLevel = 'verbose';

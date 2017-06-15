@@ -22,7 +22,7 @@ describe('PUT /service/:intent/:port', () => {
         .expect(200)
         .end((err, res) => {
             if(err) return done(err);
-            res.body.result.should.startWith('tets at');
+            res.body.result.should.startWith('test at [::ffff:127.0.0.1]:9999');
             return done();
         });
     });
