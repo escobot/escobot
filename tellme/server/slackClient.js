@@ -68,5 +68,3 @@ class SlackClient {
 }
 
 module.exports = SlackClient;
-
-
