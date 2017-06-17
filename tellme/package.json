@@ -7,6 +7,9 @@
     "test": "NODE_ENV=test eslint bin server && nyc mocha --recursive test",
     "start": "node bin/run.js"
   },
+  "engines": {
+    "node": "6.9.5"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pbgnz/tellme.git"
