@@ -1,7 +1,6 @@
 'use strict';
 
 const request = require('superagent');
-const config = require('../config');
 
 function handleWitResponse(res) {
     return res.entities;

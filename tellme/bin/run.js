@@ -1,7 +1,7 @@
 'use strict';
 
-// api keys
 const config = require('../config');
+const log = config.log();
 
 // clients
 const SlackClient = require('../server/slackClient');
@@ -14,12 +14,12 @@ const http = require('http');
 const server = http.createServer(service);
 
 const serviceRegistry = service.get('serviceRegistry');
-const slackClient = new SlackClient(config.slackToken, config.slackLogLevel, witClient, serviceRegistry);
+const slackClient = new SlackClient(config.slackToken, config.slackLogLevel, witClient, serviceRegistry, log);
 
 slackClient.start(() => {
     server.listen(3000);
 });
 
 server.on('listening', function () {
-    console.log(`Tellme is listening on ${server.address().port} in ${service.get('env')} mode.`);
-})
+    log.info(`Tellme is listening on ${server.address().port} in ${service.get('env')} mode.`);
+});

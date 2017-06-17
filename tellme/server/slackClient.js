@@ -4,23 +4,20 @@ const RtmClient = require('@slack/client').RtmClient;
 const CLIENTS_EVENTS = require('@slack/client').CLIENT_EVENTS;
 const RTM_EVENTS = require('@slack/client').RTM_EVENTS;
 
-let rtm = null;
-let nlp = null;
-let registry = null;
-
 class SlackClient {
 
-    constructor(token, logLevel, nlp, registry) {
+    constructor(token, logLevel, nlp, registry, log) {
         this._rtm = new RtmClient(token, {logLevel: logLevel});
         this._nlp = nlp;
         this._registry = registry;
+        this._log = log;
 
         this._addAuthenticatedHandler(this._handleOnAuthenticated);
         this._rtm.on(RTM_EVENTS.MESSAGE, this._handleOnMessage.bind(this));
     }
 
     _handleOnAuthenticated(rtmStartData) {
-        console.log(`Logged in as ${rtmStartData.self.name} of team ${rtmStartData.team.name} but not yet connected to a channel`);
+        this._log.info(`Logged in as ${rtmStartData.self.name} of team ${rtmStartData.team.name} but not yet connected to a channel`);
     }
 
     _addAuthenticatedHandler(handler) {
@@ -32,7 +29,7 @@ class SlackClient {
         if (message.text.toLowerCase().includes('tellme')) {
             this._nlp.ask(message.text, (err, res) => {
                 if (err) {
-                    console.log(err);
+                    this._log.error(err);
                     return;
                 }
 
@@ -43,17 +40,17 @@ class SlackClient {
 
                     const intent = require('./intents/' + res.intent[0].value + 'Intent');
 
-                    intent.process(res, this._registry, function(error, response) {
+                    intent.process(res, this._registry, this._log, (error, response) => {
                         if(error) {
-                            console.log(error.message);
+                            this._log.error(error.message);
                             return;
                         }
                         return this._rtm.sendMessage(response, message.channel);
                     });
 
                 } catch(err) {
-                    console.log(err);
-                    console.log(res);
+                    this._log.error(err);
+                    this._log.error(res);
                     this._rtm.sendMessage('Sorry, I don\'t know what you are talking about!', message.channel);
                 }
             });

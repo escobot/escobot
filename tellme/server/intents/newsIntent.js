@@ -2,7 +2,7 @@
 
 const request = require('superagent');
 
-module.exports.process = function process(intentData, registry, cb) {
+module.exports.process = function process(intentData, registry, log, cb) {
 
     if(intentData.intent[0].value !== 'news')
         return cb(new Error(`Expected news intent, got ${intentData.intent[0].value}`));
@@ -12,18 +12,17 @@ module.exports.process = function process(intentData, registry, cb) {
 
     request.get(`http://${service.ip}:${service.port}/service`, (err, res) => {
         if(err || res.statusCode != 200 || !res.body.result) {
-            console.log(err);
-            return cb(false, `I had a problem finding out the news`);
+            log.error(err);
+            return cb(false, 'I had a problem finding out the news');
         }
 
-        console.log(res.body.result);
         const message = formatData(res.body.result);
         return cb(false, `Today's most popular tech news include; ${message.text}`);
     });
-}
+};
 
 function formatData(arr) {
-    let message = "";
+    let message = '';
     arr.forEach(function(news) {
         message += `\n${news.url} ${news.title} by ${news.author}`;
     });
