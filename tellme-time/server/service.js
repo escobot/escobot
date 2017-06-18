@@ -15,6 +15,14 @@ module.exports = (config) => {
 
     service.get('/service/:location', (req, res) => {
 
+        if(req.get('X-TELLME-SERVICE-TOKEN') !== config.serviceAccessToken) {
+            return res.sendStatus(403);
+        }
+
+        if(req.get('X-TELLME-SERVICE-TOKEN') !== config.serviceAccessToken) {
+            return res.sendStatus(403);
+        }
+
         request.get('https://maps.googleapis.com/maps/api/geocode/json?address='+ req.params.location +'&key=' + geoToken, (err, response) => {
             if(err) {
                 log.error(err);

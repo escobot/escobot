@@ -16,15 +16,24 @@ describe('The express service', () => {
     });
 });
 
-describe('GET /service/:intent', () => {
+describe('GET /service/:location', () => {
     it('should return HTTP 200 with valid result', (done) => {
         request(service)
-        .get('/service/vienna')
-        .expect(200)
-        .end((err, res) => {
-            if(err) return done(err);
-            res.body.result.should.exist;
-            return done();
-        });
+            .get('/service/vienna')
+            .set('X-TELLME-SERVICE-TOKEN', config.serviceAccessToken)
+            .expect(200)
+            .end((err, res) => {
+                if(err) return done(err);
+                res.body.result.should.exist;
+                return done();
+            });
+    });
+
+    it('should return HTTP 403 if no valid token was passed', (done) => {
+        request(service)
+            .get('/service/vienna')
+            .set('X-TELLME-SERVICE-TOKEN', 'wrong token')
+            .expect(403)
+            .end(done);
     });
 });

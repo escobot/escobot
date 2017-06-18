@@ -14,13 +14,16 @@ server.on('listening', function() {
     log.info(`Tellme-Time is listening on ${server.address().port} in ${service.get('env')} mode.`);
 
     const announce = () => {
-        request.put(`http://127.0.0.1:3000/service/time/${server.address().port}`, (err) => {
-            if (err) {
-                log.debug(err);
-                log.info('Error connecting to Tellme-Time');
-                return;
-            }
-        });
+        request.put(`http://127.0.0.1:3000/service/time/${server.address().port}`)
+            .set('X-TELLME-SERVICE-TOKEN', config.serviceAccessToken)
+            .set('X-TELLME-API-TOKEN', config.tellmeApiToken)
+            .end((err) => {
+                if (err) {
+                    log.debug(err);
+                    log.info('Error connecting to Tellme-Time');
+                    return;
+                }
+            });
     };
 
     announce();
