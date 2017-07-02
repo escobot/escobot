@@ -39,3 +39,6 @@ TellMe uses the following tools for its testing infrastructure;
 - Google Maps Geocoding
 - Google Maps Timezone
 - OpenWeatherMap
+
+##### More info
+For more info, about the project visit the [wiki](https://github.com/pbgnz/tellme/wiki)
