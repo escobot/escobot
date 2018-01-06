@@ -9,12 +9,8 @@ TellMe is a microservice based Slack bot built with Node.js.
 
 ![imageedit_2_4194033671](https://user-images.githubusercontent.com/20388583/27765660-d8410f0a-5e85-11e7-9bbf-6efb139ba055.png)
 
-##### Why use Node.js ?
-Node is the ideal platform to provide services of all kinds. Why is that? Well, Node.js is event-based. It uses an event loop that allows applications to load off asynchronous tasks to. The event loop takes care of completing the given tasks while the application can continue processing requests. When a task is complete, the event loop pings back the application, then executes a callback function to proceed with the result.
-
-
 ##### Architecture
-TellMe uses the API of Slack to get notified when a new message arrives, uses a natural language processor, Wit, to try to understand the meaning of a message, uses self-built applications called microservices to find out what to reply, and send the reply back to Slack.
+TellMe uses Slack's API to get notified when a new message arrives, uses a natural language processor, Wit, to try to understand the meaning of a message, uses self-built applications called microservices to find out what to reply, and send the reply back to Slack.
 
 <p align="center"> 
  <img src="https://user-images.githubusercontent.com/20388583/27765953-5d3d1cf0-5e8e-11e7-9cc7-a3fa719689a2.png">
