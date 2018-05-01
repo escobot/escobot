@@ -3,13 +3,13 @@ const bunyan = require("bunyan");
 
 const log = {
     development: () => {
-        return bunyan.createLogger({name: 'tellme-development', level: 'debug'});
+        return bunyan.createLogger({name: 'escobot-development', level: 'debug'});
     },
     production: () => {
-        return bunyan.createLogger({name: 'tellme-production', level:'info'});
+        return bunyan.createLogger({name: 'escobot-production', level:'info'});
     },
     test: () => {
-        return bunyan.createLogger({name: 'tellme-test', level: 'fatal'});
+        return bunyan.createLogger({name: 'escobot-test', level: 'fatal'});
     }
 };
 
@@ -18,7 +18,7 @@ module.exports = {
     witToken: process.env.WIT_TOKEN,
     slackLogLevel: 'verbose',
     serviceTimeout: 30,
-    tellmeApiToken: process.env.TELLME_API_TOKEN,
+    escobotApiToken: process.env.ESCOBOT_API_TOKEN,
     log: (env) => {
         if(env) return log[env]();
         return log[process.env.NODE_ENV || 'development']();

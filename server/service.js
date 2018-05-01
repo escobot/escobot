@@ -11,11 +11,11 @@ module.exports = (config) => {
 
     service.put('/service/:intent/:port', (req, res) => {
 
-        if(req.get('X-TELLME-API-TOKEN') != config.tellmeApiToken) {
+        if(req.get('X-ESCOBOT-API-TOKEN') != config.escobotApiToken) {
             return res.sendStatus(403);
         }
 
-        if(!req.get('X-TELLME-SERVICE-TOKEN')) {
+        if(!req.get('X-ESCOBOT-SERVICE-TOKEN')) {
             return res.sendStatus(400);
         }
 
@@ -25,7 +25,7 @@ module.exports = (config) => {
         const serviceIp = req.connection.remoteAddress.includes('::')
             ? `[${req.connection.remoteAddress}]` : req.connection.remoteAddress;
 
-        serviceRegistry.add(serviceIntent, serviceIp, servicePort, req.get('X-TELLME-SERVICE-TOKEN'));
+        serviceRegistry.add(serviceIntent, serviceIp, servicePort, req.get('X-ESCOBOT-SERVICE-TOKEN'));
         res.json({result: `${serviceIntent} at ${serviceIp}:${servicePort}`});
 
     });

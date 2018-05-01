@@ -9,13 +9,13 @@ module.exports.process = function process(intentData, registry, log, cb) {
 
     if(!intentData.location) return cb(new Error('Missing location in time intent'));
 
-    const location = intentData.location[0].value.replace(/,.?tellme/i, '');
+    const location = intentData.location[0].value.replace(/,.?escobot/i, '');
 
     const service = registry.get('time');
     if(!service) return cb(false, 'No service available');
 
     request.get(`http://${service.ip}:${service.port}/service/${location}`)
-        .set('X-TELLME-SERVICE-TOKEN', service.accessToken)
+        .set('X-ESCOBOT-SERVICE-TOKEN', service.accessToken)
         .end((err, res) => {
             if(err || res.statusCode != 200 || !res.body.result) {
                 log.error(err);

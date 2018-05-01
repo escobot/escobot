@@ -9,7 +9,7 @@ module.exports.process = function process(intentData, registry, log, cb) {
 
     if(!intentData.location) return cb(new Error('Missing location in weather intent'));
 
-    const location = intentData.location[0].value.replace(/,.?tellme/i, '');
+    const location = intentData.location[0].value.replace(/,.?escobot/i, '');
 
     const service = registry.get('weather');
     if(!service) return cb(false, 'No service available');

@@ -26,7 +26,7 @@ class SlackClient {
 
     _handleOnMessage(message) {
 
-        if (message.text.toLowerCase().includes('tellme')) {
+        if (message.text.toLowerCase().includes('escobot')) {
             this._nlp.ask(message.text, (err, res) => {
                 if (err) {
                     this._log.error(err);

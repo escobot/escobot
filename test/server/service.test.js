@@ -19,8 +19,8 @@ describe('PUT /service/:intent/:port', () => {
     it('should return HTTP 200 with valid result', (done) => {
         request(service)
             .put('/service/test/9999')
-            .set('X-TELLME-API-TOKEN', config.tellmeApiToken)
-            .set('X-TELLME-SERVICE-TOKEN', 'HEYE')
+            .set('X-ESCOBOT-API-TOKEN', config.escobotApiToken)
+            .set('X-ESCOBOT-SERVICE-TOKEN', 'HEYE')
             .expect(200)
             .end((err, res) => {
                 if(err) return done(err);
@@ -39,7 +39,7 @@ describe('PUT /service/:intent/:port', () => {
     it('should return HTTP 400 with no service token provided', (done) => {
         request(service)
             .put('/service/test/9999')
-            .set('X-TELLME-API-TOKEN', config.tellmeApiToken)
+            .set('X-ESCOBOT-API-TOKEN', config.escobotApiToken)
             .expect(400)
             .end(done);
     });

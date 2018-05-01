@@ -21,5 +21,5 @@ slackClient.start(() => {
 });
 
 server.on('listening', function () {
-    log.info(`Tellme is listening on ${server.address().port} in ${service.get('env')} mode.`);
+    log.info(`Escobot is listening on ${server.address().port} in ${service.get('env')} mode.`);
 });
