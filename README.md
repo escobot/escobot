@@ -13,3 +13,6 @@ npm run start
 # run the tests (needs eslint installed globally)
 npm run test
 ```
+
+## Developer's Guide 
+Take a look at the [Wiki](https://github.com/escobot/escobot/wiki).
