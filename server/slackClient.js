@@ -1,19 +1,17 @@
 'use strict';
 
-const RtmClient = require('@slack/client').RtmClient;
-const CLIENTS_EVENTS = require('@slack/client').CLIENT_EVENTS;
-const RTM_EVENTS = require('@slack/client').RTM_EVENTS;
+const { RTMClient } = require('@slack/client');
 
 class SlackClient {
 
     constructor(token, logLevel, nlp, registry, log) {
-        this._rtm = new RtmClient(token, {logLevel: logLevel});
+        this._rtm = new RTMClient(token, {logLevel: logLevel});
         this._nlp = nlp;
         this._registry = registry;
         this._log = log;
 
         this._addAuthenticatedHandler(this._handleOnAuthenticated);
-        this._rtm.on(RTM_EVENTS.MESSAGE, this._handleOnMessage.bind(this));
+        this._rtm.on('message', this._handleOnMessage.bind(this));
     }
 
     _handleOnAuthenticated(rtmStartData) {
@@ -21,10 +19,13 @@ class SlackClient {
     }
 
     _addAuthenticatedHandler(handler) {
-        this._rtm.on(CLIENTS_EVENTS.RTM.AUTHENTICATED, handler.bind(this));
+        this._rtm.on('authenticated', handler.bind(this));
     }
 
     _handleOnMessage(message) {
+        if(!message.text) {
+            return; // make that there is a message
+        }
 
         if (message.text.toLowerCase().includes('escobot')) {
             this._nlp.ask(message.text, (err, res) => {

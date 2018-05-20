@@ -1,5 +1,6 @@
 require('dotenv').config();
 const bunyan = require("bunyan");
+const { LogLevel } = require('@slack/client');
 
 const log = {
     development: () => {
@@ -16,7 +17,7 @@ const log = {
 module.exports = {
     slackToken: process.env.SLACK_TOKEN,
     witToken: process.env.WIT_TOKEN,
-    slackLogLevel: 'verbose',
+    slackLogLevel: LogLevel.INFO,
     serviceTimeout: 30,
     escobotApiToken: process.env.ESCOBOT_API_TOKEN,
     log: (env) => {
