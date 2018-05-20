@@ -1,0 +1,4 @@
+NODE_ENV = development # or production
+WIT_TOKEN = RXYBQ3JF76KQ67IU7VKHZNNJQDSWI3VG
+SLACK_TOKEN = xox0-363185666666-sSAXnsBYYm2BWmUXNViIu0Vm
+ESCOBOT_API_TOKEN = YouCanMakeThisOneUp # Literary. You can make this one up.
